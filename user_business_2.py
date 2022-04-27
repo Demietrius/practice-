@@ -38,6 +38,8 @@ def user_insert():
         mycursor.execute(u_insert, u_data)
 
 business_insert()
+
+
 user_insert()
 
 db.commit()

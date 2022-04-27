@@ -1,4 +1,4 @@
-from db_access import Insert
+from db_access import db_connector
 
 import mysql.connector
 
