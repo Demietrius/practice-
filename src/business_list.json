@@ -1,0 +1,16 @@
+{
+    "business": [
+        {
+            "business_id": 606,
+            "business_name": "Minskys Pizza",
+            "business_type": "Food",
+            "number_of_employees": 35
+        },
+        {
+            "business_id": 607,
+            "business_name": "Jimmy Johns ",
+            "business_type": "Food",
+            "number_of_employees": 8
+        }
+    ]
+}

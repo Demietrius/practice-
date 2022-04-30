@@ -1,0 +1,9 @@
+{
+    "login":
+        {
+            "host": "localhost",
+            "user": "root",
+            "password": "Ng13gHc##",
+            "database": "user_business"
+        }
+}
