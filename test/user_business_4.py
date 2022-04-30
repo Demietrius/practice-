@@ -1,22 +1,6 @@
 from db_access import DBAccess, User, Business
 import mysql.connector
-
-database = DBAccess('localhost', 'root', 'Ng13gHc##', 'user_business')
-
-business_id = 20
-business_name = 'Whataburger'
-business_type = 'Food'
-number_of_employees = 18
-
-first_name = "Bobby"
-last_name = "Witt"
-salary = "700000"
-sex = "M"
-user_id = 22
-works_for = 402
-
-new_business = Business(business_id, business_name, business_type, number_of_employees)
-new_user = User(first_name, last_name, salary, sex, user_id, works_for)
+import json
 
 
 def insert_business(database, new_business):
@@ -32,6 +16,7 @@ def insert_business(database, new_business):
     b_insert = ("INSERT INTO Business (Business_ID, Business_Name, Business_Type, Number_Of_Employees)"
                 "VALUES (%s, %s, %s, %s)")
     mycursor.execute(b_insert, b_data)
+    db.commit()
     mycursor.execute("SELECT * FROM Business")
 
     for x in mycursor:
@@ -52,18 +37,40 @@ def insert_user(database, new_user):
     b_insert = ("INSERT INTO Users (First_Name, Last_Name, Salary, Sex, User_ID, Works_For)"
                 "VALUES (%s, %s, %s, %s, %s, %s)")
     mycursor.execute(b_insert, b_data)
+    db.commit()
     mycursor.execute("SELECT * FROM Users")
 
     for x in mycursor:
         print(x)
 
-insert_business(database, new_business)
-insert_user(database, new_user)
+
+with open("../src/db_login.json", "r") as f:
+    db_login = json.load(f)
+
+    database = DBAccess(db_login['login']['host'],
+                        db_login['login']['user'],
+                        db_login['login']['password'],
+                        db_login['login']['database'])
 
 
+with open("../src/user_list.json", "r") as f:
+    user_list = json.load(f)
 
+    for person in user_list['users']:
+        new_user = User(person['first_name'],
+                        person['last_name'],
+                        person['salary'],
+                        person['sex'],
+                        person['user_id'],
+                        person['works_for'])
+        insert_user(database, new_user)
 
+with open("../src/business_list.json", "r") as f:
+    business_list = json.load(f)
 
-
-
-
+    for person in business_list['business']:
+        new_business = Business(person['business_id'],
+                                person['business_name'],
+                                person['business_type'],
+                                person['number_of_employees'])
+        insert_business(database, new_business)
