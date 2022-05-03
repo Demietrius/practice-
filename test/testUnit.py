@@ -11,3 +11,22 @@ class testUnit(TestCase):
     def test_complex(self):
         prime_number = app.complex(8)
         print(prime_number)
+
+    def test_read(self):
+        payload = {
+            "CommonParms":{
+                "action": "read"
+                }
+        }
+        app.start(payload)
+
+// payload for create should look like this
+" {
+      "CommonParms":{
+          "action": "create"
+           }
+      "request":{
+          // user or business object goes here
+        }
+   }"
+// Payload for update would be very simular to create
