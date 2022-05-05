@@ -14,19 +14,21 @@ class testUnit(TestCase):
 
     def test_read(self):
         payload = {
-            "CommonParms":{
+            "CommonParms": {
                 "action": "read"
-                }
+            }
         }
         app.start(payload)
 
-// payload for create should look like this
-" {
-      "CommonParms":{
-          "action": "create"
-           }
-      "request":{
-          // user or business object goes here
+    # payload for create should look like this
+    def test_create(self):
+        payload = {
+            "CommonParms": {
+                "action": "create"
+            },
+            "request": {
+                # user or business json goes here
+            }
         }
-   }"
-// Payload for update would be very simular to create
+
+# for update would be very simular to create

@@ -1,3 +1,11 @@
+
+# I have creat a test case for read and added some notes for create and update
+# this should be the starting point of you project.   create a function  that takes in all request
+# this function will then pull the action out of the request and determine which handler to user
+# should look something like this
+# def handler(request)
+# if request["commonParams"]["action"] == read:
+# read_request = userProfile.processReadRequest(request)
 def start(int):
     if int > 1:
         print("hello world")
