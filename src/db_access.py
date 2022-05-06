@@ -1,3 +1,5 @@
+import mysql.connector
+
 class DBAccess:
 
     def __init__(self, host, user, password, database):
@@ -25,5 +27,23 @@ class User:
         self.sex = sex
         self.user_id = user_id
         self.works_for = works_for
+
+
+    def insert_user(self, database):
+        db = mysql.connector.connect(
+            host=database.host,
+            user=database.user,
+            password=database.password,
+            database=database.database
+        )
+        mycursor = db.cursor()
+        b_data = (self.first_name, self.last_name,
+                  self.salary, self.sex, self.user_id,
+                  self.works_for)
+        b_insert = ("INSERT INTO Users (First_Name, Last_Name, Salary, Sex, User_ID, Works_For)"
+                    "VALUES (%s, %s, %s, %s, %s, %s)")
+        mycursor.execute(b_insert, b_data)
+        db.commit()
+
 
 
