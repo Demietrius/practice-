@@ -1,0 +1,16 @@
+{
+    "CommonParams":
+        {
+            "action": "create"
+        },
+    "UserInfo":
+        {
+            "first_name": "Master",
+            "last_name": "Chief",
+            "salary": 0,
+            "sex": "M",
+            "works_for": 1
+
+        }
+
+}
