@@ -1,7 +1,5 @@
 from unittest import TestCase
-
-from src import app
-
+import user_business_API
 
 class testUnit(TestCase):
 
@@ -23,20 +21,21 @@ class testUnit(TestCase):
     # payload for create should look like this
     def test_create(self):
         payload = {
-            "commonParms": {
+            "commonParams": {
                 "action": "create",
                 "domain": "userProfile"
             },
             "request": {
                 "user": {
-                    "businessId": 123,
-                    "firstName": "Joe",
-                    "lastName": "Jake",
-                    "age": 22
+                    "firstName": "Mecole",
+                    "lastName": "Hardman",
+                    "salary": 500000,
+                    "sex": "M",
+                    "worksFor": 1
                 }
             }
         }
-        app.handler(payload)
+        user_business_API.create_handler(payload)
 
     def testUpdate(self):
         payload = {
@@ -46,15 +45,14 @@ class testUnit(TestCase):
             },
             "request": {
                 "user": {
-                    "businessId": 123,
-                    "firstName": "Joe",
-                    "lastName": "Jake",
-                    "age": 22,
-                    "userId": 23439,
-                    "lastUpdated": "02/22/2022T12:00:01.003",
-                    "lastUpdatedBy": 29393
+                    "firstName": "Mecole",
+                    "lastName": "Hardman",
+                    "salary": 1200000,
+                    "sex": "M",
+                    "worksFor": 1,
+                    "userID": 6
                 }
             }
         }
-
+        user_business_API.update_handler(payload)
     # for update would be very simular to create
