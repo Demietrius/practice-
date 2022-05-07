@@ -53,7 +53,7 @@ with open("../src/db_login.json", "r") as f:
                         db_login['login']['database'])
 
 
-with open("../src/user_list.json", "r") as f:
+with open("JSON_User_Update.json", "r") as f:
     user_list = json.load(f)
 
     for person in user_list['users']:

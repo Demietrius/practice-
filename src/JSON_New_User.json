@@ -1,9 +1,9 @@
 {
-    "CommonParams":
+    "commonParams":
         {
             "action": "create"
         },
-    "UserInfo":
+    "userInfo":
         {
             "first_name": "Master",
             "last_name": "Chief",

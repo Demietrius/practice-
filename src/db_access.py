@@ -20,12 +20,11 @@ class Business:
 
 class User:
 
-    def __init__(self, first_name, last_name, salary, sex, user_id, works_for):
+    def __init__(self, first_name, last_name, salary, sex, works_for):
         self.first_name = first_name
         self.last_name = last_name
         self.salary = salary
         self.sex = sex
-        self.user_id = user_id
         self.works_for = works_for
 
 
@@ -38,10 +37,9 @@ class User:
         )
         mycursor = db.cursor()
         b_data = (self.first_name, self.last_name,
-                  self.salary, self.sex, self.user_id,
-                  self.works_for)
-        b_insert = ("INSERT INTO Users (First_Name, Last_Name, Salary, Sex, User_ID, Works_For)"
-                    "VALUES (%s, %s, %s, %s, %s, %s)")
+                  self.salary, self.sex, self.works_for)
+        b_insert = ("INSERT INTO Users (First_Name, Last_Name, Salary, Sex, Works_For)"
+                    "VALUES (%s, %s, %s, %s, %s) RETURN *")
         mycursor.execute(b_insert, b_data)
         db.commit()
 
