@@ -1,13 +1,12 @@
+
+
 {
-    "business": [
+    "CommonParams": [
         {
-            "business_id": 606,
-            "business_name": "Minskys Pizza",
-            "business_type": "Food",
-            "number_of_employees": 35
+            "action": "read"
         },
         {
-            "business_id": 607,
+            "first_name": "",
             "business_name": "Jimmy Johns ",
             "business_type": "Food",
             "number_of_employees": 8
