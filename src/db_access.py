@@ -1,47 +1,41 @@
 import mysql.connector
 
-class DBAccess:
+
+class DatabaseAccessor:
 
     def __init__(self, host, user, password, database):
         self.host = host
         self.user = user
         self.password = password
         self.database = database
+        self.databaseConnection = None
+        self.databaseCursor = None
 
-
-class Business:
-
-    def __init__(self, business_id, business_name, business_type, number_of_employees):
-        self.business_id = int(business_id),
-        self.business_name = business_name,
-        self.business_type = business_type,
-        self.number_of_employees = int(number_of_employees)
-
-
-class User:
-
-    def __init__(self, first_name, last_name, salary, sex, works_for):
-        self.first_name = first_name
-        self.last_name = last_name
-        self.salary = salary
-        self.sex = sex
-        self.works_for = works_for
-
-
-    def insert_user(self, database):
-        db = mysql.connector.connect(
-            host=database.host,
-            user=database.user,
-            password=database.password,
-            database=database.database
+    def db_connection(self):
+        self.databaseConnection = mysql.connector.connect(
+            host=self.host,
+            user=self.user,
+            password=self.password,
+            database=self.database
         )
-        mycursor = db.cursor()
-        b_data = (self.first_name, self.last_name,
-                  self.salary, self.sex, self.works_for)
-        b_insert = ("INSERT INTO Users (First_Name, Last_Name, Salary, Sex, Works_For)"
-                    "VALUES (%s, %s, %s, %s, %s) RETURN *")
-        mycursor.execute(b_insert, b_data)
-        db.commit()
+        self.databaseCursor = self.databaseConnection.cursor()
 
+    def create(self, request):
+        data = (request["firstName"], request["lastName"], request["salary"],
+                request["sex"], request["worksFor"])
+        DatabaseAccessor.db_connection(self)
+        cursor = self.databaseCursor
+        sql = ("INSERT INTO Users (First_Name, Last_Name, Salary, Sex, Works_For)"
+               "VALUES (%s, %s, %s, %s, %s)")
+        cursor.execute(sql, data)
+        self.databaseConnection.commit()
 
-
+    def update(self, request):
+        data = (request["firstName"], request["lastName"], request["salary"],
+                request["sex"], request["worksFor"], request["userID"])
+        DatabaseAccessor.db_connection(self)
+        cursor = self.databaseCursor
+        sql = ("UPDATE Users SET First_Name = %s, Last_Name = %s, Salary = %s,"
+               "Sex = %s, Works_For = %s WHERE User_ID = %s")
+        cursor.execute(sql, data)
+        self.databaseConnection.commit()
