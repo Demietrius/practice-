@@ -22,6 +22,18 @@ def update_handler(request):
     database.update(request["request"]["user"])
 
 
+def read_handler(request):
+    if "user" not in request["request"]:
+        return 2, "error: no data for user"
+    database.read(request["request"]["user"]["userID"])
+
+
+def delete_handler(request):
+    if "user" not in request["request"]:
+        return 2, "error: no data for user"
+    database.delete(request["request"]["user"]["userID"])
+
+
 def handler(request):
     if "commonParams" not in request:
         return 2, " error: missing common parameter (commonParams)"
@@ -35,8 +47,6 @@ def handler(request):
         if request["commonParams"]["action"] == "update":
             update_handler(request)
         if request["commonParams"]["action"] == "read":
-            # read_handler(request)
-            pass
+            read_handler(request)
         if request["commonParams"]["action"] == "delete":
-            # delete_handler(request)
-            pass
+            delete_handler(request)
