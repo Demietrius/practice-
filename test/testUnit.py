@@ -1,6 +1,7 @@
 from unittest import TestCase
 import user_business_API
 
+
 class testUnit(TestCase):
 
     def test_read(self):
@@ -11,14 +12,12 @@ class testUnit(TestCase):
             },
             "request": {
                 "user": {
-                    "userID": "11"
-                    }
+                    "userID": "5"
+                }
             }
         }
         user_business_API.handler(payload)
 
-
-    # payload for create should look like this
     def test_create(self):
         payload = {
             "commonParams": {
@@ -27,9 +26,9 @@ class testUnit(TestCase):
             },
             "request": {
                 "user": {
-                    "firstName": "Mecole",
-                    "lastName": "Hardman",
-                    "salary": 500000,
+                    "firstName": "Nick",
+                    "lastName": "Bolton",
+                    "salary": 2500000,
                     "sex": "M",
                     "worksFor": 1
                 }
@@ -54,8 +53,7 @@ class testUnit(TestCase):
                 }
             }
         }
-        user_business_API.update_handler(payload)
-    # for update would be very simular to create
+        user_business_API.handler(payload)
 
     def test_delete(self):
         payload = {
@@ -66,7 +64,7 @@ class testUnit(TestCase):
             "request": {
                 "user": {
                     "userID": "11"
-                    }
+                }
             }
         }
         user_business_API.handler(payload)
