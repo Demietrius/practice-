@@ -23,10 +23,12 @@ class DatabaseAccessor:
         except Exception as e:
             print(e)
 
-
     def create(self, request):
-        data = (request["firstName"], request["lastName"], request["salary"],
-                request["sex"], request["worksFor"])
+        data = (request["firstName"],
+                request["lastName"],
+                request["salary"],
+                request["sex"],
+                request["worksFor"])
         DatabaseAccessor.db_connection(self)
         cursor = self.databaseCursor
         sql = ("INSERT INTO Users (First_Name, Last_Name, Salary, Sex, Works_For)"
@@ -38,7 +40,6 @@ class DatabaseAccessor:
         print("Updated Table")
         print("********************")
         self.user_table_print()
-
 
     def update(self, request):
         data = (request["firstName"],
