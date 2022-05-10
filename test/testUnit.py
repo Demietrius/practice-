@@ -12,7 +12,7 @@ class testUnit(TestCase):
             },
             "request": {
                 "user": {
-                    "userID": "5"
+                    "userID": "3"
                 }
             }
         }
